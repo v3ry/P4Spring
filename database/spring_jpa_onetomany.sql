@@ -27,8 +27,8 @@ DROP TABLE IF EXISTS `school`;
 CREATE TABLE `school` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `capacity` bigint(20) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -82,3 +82,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-11-22 11:20:04
+
