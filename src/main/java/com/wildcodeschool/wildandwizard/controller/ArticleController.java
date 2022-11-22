@@ -1,18 +1,12 @@
 package com.wildcodeschool.wildandwizard.controller;
 
-
-import org.hibernate.type.descriptor.sql.BigIntTypeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import com.wildcodeschool.wildandwizard.entity.Article;
 import com.wildcodeschool.wildandwizard.repository.ArticleRepository;
-import com.wildcodeschool.wildandwizard.repository.CategorieRepository;
 
-import java.lang.reflect.*;
-import java.math.BigInteger;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -20,8 +14,6 @@ import java.util.*;
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
-    @Autowired
-    private CategorieRepository categorieRepository;
 
     @GetMapping("/articles")
     public List<Article> index() {
