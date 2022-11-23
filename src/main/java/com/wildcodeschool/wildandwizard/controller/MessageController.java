@@ -30,8 +30,13 @@ public class MessageController {
     }
 
     @DeleteMapping("messages/{id}")
-    public boolean delete(@PathVariable Long id){
-        messageRepository.deleteById(id);
-        return true;
+    public boolean delete(@PathVariable Long id,@RequestHeader("Authorization") String header){
+        System.out.println("header : " + header);
+        System.out.println("header : " + header.equals("toto"));
+        if (header.equals("toto")){
+            messageRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

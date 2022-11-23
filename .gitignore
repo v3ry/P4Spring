@@ -26,6 +26,8 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-
+application.properties
+**.properties
 ### VS Code ###
 .vscode/
+application.properties

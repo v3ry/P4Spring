@@ -1,5 +1,6 @@
 package com.wildcodeschool.wildandwizard.controller;
 
+import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +18,11 @@ public class ArticleController {
 
     @GetMapping("/articles")
     public List<Article> index() {
-        // if (!cat.isEmpty()) {
-            // return articleRepository.findAllArticlesByCategorieId(cat);
-        // }
         return articleRepository.findAll();
     }
     @GetMapping("/articles/cat")
     public List<Article> byCat(long cat) {
-        // if (!cat.isEmpty()) {
             return articleRepository.findAllByCategorieId(cat);
-            // return articleRepository.findAllArticlesByCategorieId(cat);
-        // }
-        // return articleRepository.findAll();
     }
 
     @GetMapping("/articles/{id}")
@@ -37,27 +31,45 @@ public class ArticleController {
     }
 
     @PostMapping("/articles")
-    public Article create(@RequestBody Article article){
-        return articleRepository.save(article);
+    public Article create(@RequestBody Article article,@RequestHeader("Authorization") String header){
+        System.out.println("header : " + header);
+        System.out.println("header : " + header.equals("toto"));
+        if (header.equals("toto")){
+            return articleRepository.save(article);
+        }
+        return null;
     }
 
     @PutMapping("/articles/{id}")
-    public Article update(@PathVariable Long id, @RequestBody Article article){
-        // getting blog
-        Article articleToUpdate = articleRepository.findById(id).get();
-        articleToUpdate.setTitle(article.getTitle());
-        articleToUpdate.setDescription(article.getDescription());
-        articleToUpdate.setDate(article.getDate());
-        articleToUpdate.setPicture(article.getPicture());
-        articleToUpdate.setCategorie(article.getCategorie());
-        return articleRepository.save(articleToUpdate);
+    public Article update(@PathVariable Long id, @RequestBody Article article,@RequestHeader("Authorization") String header){
+        System.out.println("header : " + header);
+        System.out.println("header : " + header.equals("toto"));
+        if (header.equals("toto")){
+            Article articleToUpdate = articleRepository.findById(id).get();
+            articleToUpdate.setTitle(article.getTitle());
+            articleToUpdate.setDescription(article.getDescription());
+            articleToUpdate.setDate(article.getDate());
+            articleToUpdate.setPicture(article.getPicture());
+            articleToUpdate.setCategorie(article.getCategorie());
+            return articleRepository.save(articleToUpdate);
+        }
+        return null;
+
+
     }
 
 
     @DeleteMapping("articles/{id}")
-    public boolean delete(@PathVariable Long id){
-        articleRepository.deleteById(id);
-        return true;
+    public boolean delete(@PathVariable Long id,@RequestHeader("Authorization") String header){
+        System.out.println("header : " + header);
+        System.out.println("header : " + header.equals("toto"));
+        if (header.equals("toto")){
+            articleRepository.deleteById(id);
+            return true;
+        }
+        return false;
+
+
     }
     
 }
